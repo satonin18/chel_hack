@@ -33,7 +33,7 @@ public class Scheduler {
         this.validatorDto = validatorDto;
     }
 
-    @Scheduled(fixedRate = 3000)
+    @Scheduled(fixedRate = 5000)
     public void scheduleTaskWithFixedRate() {
         int countTryIfServerBusy = 0;
         while (countTryIfServerBusy < 3) {
@@ -49,7 +49,9 @@ public class Scheduler {
                     System.out.println(infoShopServer.getStatus());
 
                     productService.deleteAll();
-                    productService.saveAll(infoShopServer.getData());
+                    for(int i = 0; i < 150; i++){
+                        productService.saveAll(infoShopServer.getData());
+                    }
 
                     System.out.println("OK");
 
